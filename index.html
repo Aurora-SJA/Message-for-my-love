@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>I LOVE YOU DYLAN LEBLANC</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    h1 {
+      color: #e91e63;
+      font-size: 36px;
+      margin: 0;
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    .picture-container {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .picture-container img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 5px;
+      display: none;
+    }
+
+    button {
+      display: block;
+      margin: 0 auto;
+      padding: 10px 20px;
+      background-color: #e91e63;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #c2185b;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 20% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 60%;
+      border-radius: 10px;
+      position: relative;
+    }
+
+    .close {
+      color: #aaa;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header">
+      <h1>Daily Message</h1>
+      <input type="file" id="fileInput" accept="image/*">
+    </div>
+    <div class="picture-container">
+      <img src="#" alt="Your Picture" id="uploadedPicture">
+    </div>
+    <button id="messageBtn">Open Message</button>
+    <div id="messageModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p> I have to be honest, I didn't wanted to write a message today, but that what love is, I do it even when I don't feel like because I love you </p>
+        <p> I love you more than words can express, more than the stars in the sky, and more than yesterday but less than tomorrow. You are my rock, my best friend, and my forever love. </p>
+        <p> Even if I decide to change my way to see things, I'll never love you less. </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var modal = document.getElementById('messageModal');
+      var btn = document.getElementById("messageBtn");
+      var span = document.getElementsByClassName("close")[0];
+      var fileInput = document.getElementById('fileInput');
+      var uploadedPicture = document.getElementById('uploadedPicture');
+
+      btn.onclick = function() {
+        modal.style.display = "block";
+      }
+
+      span.onclick = function() {
+        modal.style.display = "none";
+      }
+
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
+
+      fileInput.addEventListener('change', function() {
+        var file = fileInput.files[0];
+        var reader = new FileReader();
+
+        reader.onload = function(event) {
+          uploadedPicture.src = event.target.result;
+          uploadedPicture.style.display = 'block';
+        }
+
+        reader.readAsDataURL(file);
+      });
+    });
+  </script>
+</body>
+</html>
